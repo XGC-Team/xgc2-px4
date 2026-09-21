@@ -31,6 +31,10 @@
 #
 ############################################################################
 
+if(NOT TARGET IndiControl)
+	add_subdirectory(${PX4_SOURCE_DIR}/src/lib/indi ${CMAKE_CURRENT_BINARY_DIR}/indi)
+endif()
+
 px4_add_module(
 	MODULE modules__mc_rate_control
 	MAIN mc_rate_control
@@ -39,9 +43,12 @@ px4_add_module(
 	SRCS
 		MulticopterRateControl.cpp
 		MulticopterRateControl.hpp
+		IndiShadow.cpp
+		IndiShadow.hpp
 	DEPENDS
 		circuit_breaker
 		mathlib
 		RateControl
+		IndiControl
 		px4_work_queue
 	)

@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "audit_date": "2026-09-22",
+  "repository": "XGC-Team/xgc2-px4",
+  "branch": "feature/indi-v1.17-foundation",
+  "upstream_tag": "v1.17.0",
+  "tag_object": "a5eb12d2ab591251faa009f76b2685b8cc64405d",
+  "base_commit": "d6f12ad1c4f70ad3230afd7d86e971421e02fef4",
+  "base_tree": "e773a3833b5c209466d775931ab8d7e82edeb794",
+  "phase": "P0: read-only shadow integration; no flight-control takeover",
+  "upstream_bugfix_backports": [],
+  "bugfix_audit_status": "No backport applicability claim; audit target-specific fixes before hardware release.",
+  "target_board": null,
+  "esc_firmware": null,
+  "motor_propeller_configuration": null,
+  "flight_parameters_identified": false,
+  "full_px4_build_completed": false,
+  "sitl_closed_loop_completed": false,
+  "hil_completed": false,
+  "flight_test_completed": false,
+  "host_test_toolchain": {
+    "language": "C++14",
+    "compiler": "GNU 14.2.0",
+    "sanitizers": [
+      "address",
+      "undefined"
+    ],
+    "python_dependencies": [
+      "numpy"
+    ]
+  },
+  "submodules": "Inherited gitlinks unchanged from base commit; not initialized or independently built in this session.",
+  "external_ros2_environment": "Not frozen; no DDS or px4_msgs changes in P0.",
+  "sources": [
+    {
+      "id": "S1",
+      "path": "src/modules/sensors/vehicle_angular_velocity/VehicleAngularVelocity.cpp",
+      "url": "https://github.com/XGC-Team/xgc2-px4/blob/d6f12ad1c4f70ad3230afd7d86e971421e02fef4/src/modules/sensors/vehicle_angular_velocity/VehicleAngularVelocity.cpp"
+    },
+    {
+      "id": "S2",
+      "path": "src/modules/mc_rate_control/MulticopterRateControl.cpp",
+      "url": "https://github.com/XGC-Team/xgc2-px4/blob/d6f12ad1c4f70ad3230afd7d86e971421e02fef4/src/modules/mc_rate_control/MulticopterRateControl.cpp"
+    },
+    {
+      "id": "S3",
+      "path": "src/modules/control_allocator/ControlAllocator.cpp",
+      "url": "https://github.com/XGC-Team/xgc2-px4/blob/d6f12ad1c4f70ad3230afd7d86e971421e02fef4/src/modules/control_allocator/ControlAllocator.cpp"
+    },
+    {
+      "id": "S4",
+      "path": "src/lib/control_allocation/control_allocation/ControlAllocation.hpp",
+      "url": "https://github.com/XGC-Team/xgc2-px4/blob/d6f12ad1c4f70ad3230afd7d86e971421e02fef4/src/lib/control_allocation/control_allocation/ControlAllocation.hpp"
+    },
+    {
+      "id": "S5",
+      "path": "src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessRotors.cpp",
+      "url": "https://github.com/XGC-Team/xgc2-px4/blob/d6f12ad1c4f70ad3230afd7d86e971421e02fef4/src/modules/control_allocator/VehicleActuatorEffectiveness/ActuatorEffectivenessRotors.cpp"
+    },
+    {
+      "id": "S6",
+      "path": "msg/EscReport.msg",
+      "url": "https://github.com/XGC-Team/xgc2-px4/blob/d6f12ad1c4f70ad3230afd7d86e971421e02fef4/msg/EscReport.msg"
+    },
+    {
+      "id": "S6b",
+      "path": "msg/EscStatus.msg",
+      "url": "https://github.com/XGC-Team/xgc2-px4/blob/d6f12ad1c4f70ad3230afd7d86e971421e02fef4/msg/EscStatus.msg"
+    },
+    {
+      "id": "S7",
+      "path": "src/modules/uxrce_dds_client/dds_topics.yaml",
+      "url": "https://github.com/XGC-Team/xgc2-px4/blob/d6f12ad1c4f70ad3230afd7d86e971421e02fef4/src/modules/uxrce_dds_client/dds_topics.yaml"
+    },
+    {
+      "id": "S8",
+      "path": "src/lib/parameters/CMakeLists.txt",
+      "url": "https://github.com/XGC-Team/xgc2-px4/blob/d6f12ad1c4f70ad3230afd7d86e971421e02fef4/src/lib/parameters/CMakeLists.txt"
+    }
+  ],
+  "paper_references": [
+    {
+      "doi": "10.1016/j.conengprac.2018.01.003",
+      "corrigendum_doi": "10.1016/j.conengprac.2022.105093",
+      "used_sections": "2, 4.5, 8.1, corrigendum",
+      "reproduction": "Own derivation; no paper PDF copied into repository"
+    },
+    {
+      "doi": "10.1109/TRO.2022.3177279",
+      "used_sections": "III-B, IV-C, V",
+      "reproduction": "Own derivation; not exact rotor-speed controller replication"
+    }
+  ]
+}

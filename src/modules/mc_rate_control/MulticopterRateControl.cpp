@@ -46,6 +46,7 @@ using math::radians;
 MulticopterRateControl::MulticopterRateControl(bool vtol) :
 	ModuleParams(nullptr),
 	WorkItem(MODULE_NAME, px4::wq_configurations::rate_ctrl),
+	_indi_shadow(this, vtol),
 	_vehicle_thrust_setpoint_pub(vtol ? ORB_ID(vehicle_thrust_setpoint_virtual_mc) : ORB_ID(vehicle_thrust_setpoint)),
 	_vehicle_torque_setpoint_pub(vtol ? ORB_ID(vehicle_torque_setpoint_virtual_mc) : ORB_ID(vehicle_torque_setpoint)),
 	_loop_perf(perf_alloc(PC_ELAPSED, MODULE_NAME": cycle"))
@@ -97,6 +98,7 @@ MulticopterRateControl::parameters_updated()
 				  radians(_param_mc_acro_y_max.get()));
 
 	_output_lpf_yaw.setCutoffFreq(_param_mc_yaw_tq_cutoff.get());
+	_indi_shadow.parametersUpdated();
 }
 
 void
@@ -262,6 +264,12 @@ MulticopterRateControl::Run()
 			vehicle_torque_setpoint.timestamp_sample = angular_velocity.timestamp_sample;
 			vehicle_torque_setpoint.timestamp = hrt_absolute_time();
 			_vehicle_torque_setpoint_pub.publish(vehicle_torque_setpoint);
+
+			// INDI research diagnostics run AFTER the unchanged PID publications.
+			// No candidate is written to a control topic in this phase.
+			_indi_shadow.update(angular_velocity, _rates_setpoint, vehicle_torque_setpoint,
+					    _vehicle_control_mode.flag_armed, _maybe_landed || _landed,
+					    _vehicle_status.vehicle_type == vehicle_status_s::VEHICLE_TYPE_ROTARY_WING);
 
 			updateActuatorControlsStatus(vehicle_torque_setpoint, dt);
 

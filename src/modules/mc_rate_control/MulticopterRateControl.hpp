@@ -33,6 +33,8 @@
 
 #pragma once
 
+#include "IndiShadow.hpp"
+
 #include <lib/rate_control/rate_control.hpp>
 #include <lib/mathlib/math/filter/AlphaFilter.hpp>
 #include <lib/matrix/matrix/math.hpp>
@@ -91,6 +93,7 @@ private:
 	void updateActuatorControlsStatus(const vehicle_torque_setpoint_s &vehicle_torque_setpoint, float dt);
 
 	RateControl _rate_control; ///< class for rate control calculations
+	IndiShadow _indi_shadow; ///< read-only research path; no actuator authority
 
 	uORB::Subscription _battery_status_sub{ORB_ID(battery_status)};
 	uORB::Subscription _control_allocator_status_sub{ORB_ID(control_allocator_status)};
